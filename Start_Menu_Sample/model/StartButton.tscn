@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci8nfqvua4x4"]
+
+[ext_resource type="Texture2D" uid="uid://vrf7ppmewv54" path="res://button.png" id="1_fdddh"]
+
+[node name="StartButton" type="Node2D"]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+texture_normal = ExtResource("1_fdddh")
+action = "Menu_Start"
