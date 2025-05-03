@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b12thyvfcq5cg"]
+
+[ext_resource type="Texture2D" path="res://image/test.jpg" id="1_nnsk1"]
+[ext_resource type="Script" path="res://scenes/character_body_2d.gd" id="1_rwgxs"]
+
+[node name="world" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(334, 339)
+script = ExtResource("1_rwgxs")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_nnsk1")
