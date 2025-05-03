@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8lioflk8cvpm"]
+
+[ext_resource type="PackedScene" uid="uid://dnsc6tc1gvlme" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://dvoi6sps2dgqb" path="res://scripts/player.gd" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://en2ym7bvcxxh" path="res://connection_point.gd" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://iksfrskrjhi0" path="res://line_platform.gd" id="4_fc0e3"]
+
+[sub_resource type="GDScript" id="GDScript_fc0e3"]
+script/source = "extends Node2D
+
+var line_platform_scene = preload(\"res://LinePlatform.tscn\")
+var selected_point = null
+
+func _ready():
+	# Connect all connection points' signals
+	for point in get_tree().get_nodes_in_group(\"connection_points\"):
+		point.connect(\"point_clicked\", _on_point_clicked)
+		point.connect(\"drag_to_point\", _on_drag_to_point)
+
+func _on_point_clicked(point):
+	if selected_point == null:
+		# First point selected
+		selected_point = point
+		selected_point.is_being_dragged = true
+	else:
+		# Second point selected
+		_create_line_platform(selected_point, point)
+		selected_point.is_being_dragged = false
+		selected_point = null
+
+func _on_drag_to_point(from_point, to_point):
+	_create_line_platform(from_point, to_point)
+	selected_point = null
+
+func _create_line_platform(point1, point2):
+	# Don't create duplicate platforms between the same points
+	for child in get_children():
+		if child.get(\"point1\") == point1 and child.get(\"point2\") == point2:
+			return
+		if child.get(\"point1\") == point2 and child.get(\"point2\") == point1:
+			return
+	
+	# Create the line platform
+	var new_platform = line_platform_scene.instantiate()
+	add_child(new_platform)
+	new_platform.initialize(point1, point2)
+
+func _process(_delta):
+	# Create a visual line when dragging between points
+	if selected_point != null and selected_point.is_being_dragged:
+		update()  # Trigger _draw to be called
+
+func _draw():
+	if selected_point != null and selected_point.is_being_dragged:
+		draw_line(selected_point.position, get_global_mouse_position() - global_position, 
+				  Color.WHITE, 2.0)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+size = Vector2(121, 1937.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jktm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
+
+[node name="Game" type="Node2D"]
+script = SubResource("GDScript_fc0e3")
+
+[node name="player" parent="." instance=ExtResource("1_80nbo")]
+position = Vector2(-848, -81)
+scale = Vector2(4, 4)
+script = ExtResource("2_e2o6t")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1141, -529)
+anchor_mode = 0
+zoom = Vector2(0.5, 0.5)
+
+[node name="Start" type="StaticBody2D" parent="."]
+position = Vector2(1735, 254)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Start"]
+position = Vector2(-2584, 701)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="ColorRect" type="ColorRect" parent="Start"]
+offset_left = -2660.0
+offset_top = -264.0
+offset_right = -2505.0
+offset_bottom = 516.0
+
+[node name="End" type="StaticBody2D" parent="."]
+position = Vector2(3141, 11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End"]
+position = Vector2(-2267, 954)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="ColorRect" type="ColorRect" parent="End"]
+offset_left = -2332.0
+offset_top = -12.0
+offset_right = -2205.0
+offset_bottom = 942.0
+
+[node name="ConnectionPoint" type="Area2D" parent="."]
+script = ExtResource("3_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConnectionPoint"]
+shape = SubResource("CircleShape2D_7jktm")
+
+[node name="ColorRect" type="ColorRect" parent="ConnectionPoint"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LinePlatform" type="StaticBody2D" parent="."]
+script = ExtResource("4_fc0e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LinePlatform"]
+shape = SubResource("RectangleShape2D_ryrav")
+
+[node name="Line2D" type="Line2D" parent="LinePlatform"]
