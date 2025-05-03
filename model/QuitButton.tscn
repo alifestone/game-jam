@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://77i01mfff3o4"]
+
+[ext_resource type="Script" uid="uid://dc65p1bpr1bxt" path="res://script/quit_button.gd" id="1_g1x1t"]
+[ext_resource type="Texture2D" uid="uid://3dg6886366ig" path="res://asset/Quit.png" id="2_g1x1t"]
+[ext_resource type="Script" uid="uid://ct6j2t4736a1" path="res://script/touch_screen_button.gd" id="3_ahoo8"]
+
+[node name="QuitButton" type="Node2D"]
+script = ExtResource("1_g1x1t")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+scale = Vector2(0.397524, 0.408333)
+texture_normal = ExtResource("2_g1x1t")
+action = "Menu_Quit"
+script = ExtResource("3_ahoo8")
