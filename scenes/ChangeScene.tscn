@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://26udtgg3bl6q"]
+
+[ext_resource type="Script" uid="uid://crllofttp61cf" path="res://VictoryScreen/ChangeScene.gd" id="1_2utfn"]
+[ext_resource type="Texture2D" uid="uid://b54m754p7losc" path="res://assets/sprites/background.webp" id="2_qnyt8"]
+[ext_resource type="Texture2D" uid="uid://bg3uen6f6t5m0" path="res://assets/sprites/ECHO.png" id="3_k3wfi"]
+[ext_resource type="Texture2D" uid="uid://cjj2kane8gxgb" path="res://assets/sprites/Next1.png" id="4_uwc0f"]
+[ext_resource type="Texture2D" uid="uid://bnqtvcwxtpu8i" path="res://assets/sprites/Next2.png" id="5_70t06"]
+
+[node name="ChangeScene" type="Node2D"]
+script = ExtResource("1_2utfn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(578, 350)
+scale = Vector2(0.9, 0.966667)
+texture = ExtResource("2_qnyt8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 356.0
+offset_top = 58.0
+offset_right = 851.0
+offset_bottom = 313.0
+texture = ExtResource("3_k3wfi")
+metadata/_edit_use_anchors_ = true
+
+[node name="button" type="Node2D" parent="."]
+
+[node name="Touch" type="TouchScreenButton" parent="button"]
+position = Vector2(485, 408)
+texture_normal = ExtResource("4_uwc0f")
+texture_pressed = ExtResource("5_70t06")
+action = "final"
+
+[connection signal="pressed" from="button/Touch" to="button" method="_on_touch_pressed"]

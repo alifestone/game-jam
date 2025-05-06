@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://re8pwahravd6"]
+
+[ext_resource type="Texture2D" uid="uid://cub5f8p5meugk" path="res://shared_level1_map/asset/主角.png" id="1_xma02"]
+[ext_resource type="Script" uid="uid://t8fymg0h0eeu" path="res://shared_level1_map/script/player.gd" id="1_xtorv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtorv"]
+atlas = ExtResource("1_xma02")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xambj"]
+atlas = ExtResource("1_xma02")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn7ee"]
+atlas = ExtResource("1_xma02")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a16ym"]
+atlas = ExtResource("1_xma02")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmxn2"]
+atlas = ExtResource("1_xma02")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqugk"]
+atlas = ExtResource("1_xma02")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gj63a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtorv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xambj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn7ee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a16ym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmxn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqugk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmxn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a16ym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn7ee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xambj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ki4cr"]
+radius = 1.36846
+height = 12.9533
+
+[node name="player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_xtorv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.464731, 0.433025)
+sprite_frames = SubResource("SpriteFrames_gj63a")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.769818
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1)
+scale = Vector2(-4.10342, -1.8528)
+shape = SubResource("CapsuleShape2D_ki4cr")

@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1jctiklxt8p5"]
+
+[ext_resource type="PackedScene" uid="uid://mgq5xap2rwas" path="res://shared_level1_map/tscn/background.tscn" id="1_x1j0p"]
+[ext_resource type="FontFile" uid="uid://c53kogtyjwsss" path="res://shared_level2_map/fonts/PixelOperator8-Bold.ttf" id="2_c4m8l"]
+[ext_resource type="PackedScene" uid="uid://dnwwvcbp7n3s8" path="res://shared_level1_map/tscn/tile_map_layer.tscn" id="2_dlpno"]
+[ext_resource type="PackedScene" uid="uid://b2frhmktcuod7" path="res://shared_level1_map/tscn/coin.tscn" id="4_dlpno"]
+[ext_resource type="Script" uid="uid://doob5vhwdeoqu" path="res://shared_level1_map/script/level1_manager.gd" id="5_c4m8l"]
+[ext_resource type="PackedScene" uid="uid://dkio0c5oh63ls" path="res://shared_level1_map/tscn/player.tscn" id="5_i7s12"]
+[ext_resource type="PackedScene" uid="uid://cf7p1plxdixyb" path="res://shared_level1_map/tscn/killzone.tscn" id="7_n33p4"]
+[ext_resource type="PackedScene" uid="uid://bvbpmeivmar51" path="res://shared_level1_map/tscn/slime.tscn" id="8_renrp"]
+[ext_resource type="PackedScene" uid="uid://c0digou0a854g" path="res://scripts/finish_line.tscn" id="9_uttvm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_renrp"]
+
+[node name="level1" type="Node2D"]
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_x1j0p")]
+
+[node name="TileMapLayer2" parent="." instance=ExtResource("2_dlpno")]
+
+[node name="player" parent="." instance=ExtResource("5_i7s12")]
+position = Vector2(-3, -64)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(1, 0)
+zoom = Vector2(4, 4)
+
+[node name="level1_manager" type="Node" parent="."]
+script = ExtResource("5_c4m8l")
+
+[node name="score" type="Label" parent="level1_manager"]
+offset_left = 636.0
+offset_top = -106.0
+offset_right = 765.0
+offset_bottom = -52.0
+theme_override_fonts/font = ExtResource("2_c4m8l")
+text = "You collected X coins"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="coin" type="Node" parent="."]
+
+[node name="coin" parent="coin" instance=ExtResource("4_dlpno")]
+position = Vector2(200, -24)
+
+[node name="coin2" parent="coin" instance=ExtResource("4_dlpno")]
+position = Vector2(392, -86)
+
+[node name="coin3" parent="coin" instance=ExtResource("4_dlpno")]
+position = Vector2(648, 10)
+
+[node name="killzone" parent="." instance=ExtResource("7_n33p4")]
+position = Vector2(3, 28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-1, 189)
+shape = SubResource("WorldBoundaryShape2D_renrp")
+
+[node name="slime" parent="." instance=ExtResource("8_renrp")]
+position = Vector2(597, 11)
+
+[node name="finish_line" parent="." instance=ExtResource("9_uttvm")]
+position = Vector2(804, -85)

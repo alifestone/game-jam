@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://camptdgpd64pr"]
+
+[ext_resource type="Texture2D" uid="uid://1ma72efaig43" path="res://shared_level1_map/asset/怪物.png" id="1_5tug5"]
+[ext_resource type="PackedScene" uid="uid://cf7p1plxdixyb" path="res://shared_level1_map/tscn/killzone.tscn" id="2_7k3l6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k3l6"]
+atlas = ExtResource("1_5tug5")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1xsy"]
+atlas = ExtResource("1_5tug5")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0dal"]
+atlas = ExtResource("1_5tug5")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca6um"]
+atlas = ExtResource("1_5tug5")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v80fn"]
+atlas = ExtResource("1_5tug5")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q432"]
+atlas = ExtResource("1_5tug5")
+region = Rect2(160, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp7i3"]
+atlas = ExtResource("1_5tug5")
+region = Rect2(192, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65qws"]
+atlas = ExtResource("1_5tug5")
+region = Rect2(224, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjww4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7k3l6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1xsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0dal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca6um")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v80fn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3q432")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp7i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65qws")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1xsy"]
+radius = 12.0416
+
+[node name="slime" type="Node2D"]
+position = Vector2(0, -1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vjww4")
+autoplay = "default"
+frame_progress = 0.479734
+
+[node name="killzone" parent="." instance=ExtResource("2_7k3l6")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_n1xsy")

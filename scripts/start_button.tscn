@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyq65o4ctl3g"]
+
+[ext_resource type="Script" uid="uid://bg1maypcfllpa" path="res://start_button.gd" id="1_1tjrv"]
+[ext_resource type="Texture2D" uid="uid://b54m754p7losc" path="res://assets/sprites/background.webp" id="2_ocqxa"]
+[ext_resource type="Texture2D" uid="uid://ce1gc6syyjiem" path="res://assets/sprites/GameTitle.png" id="3_k6t7h"]
+
+[node name="start_button" type="Node2D"]
+script = ExtResource("1_1tjrv")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_ocqxa")
+
+[node name="GameTitle" type="TextureRect" parent="."]
+offset_left = 494.0
+offset_top = 52.0
+offset_right = 794.0
+offset_bottom = 202.0
+texture = ExtResource("3_k6t7h")

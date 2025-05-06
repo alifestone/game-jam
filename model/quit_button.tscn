@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://nc2axxshbkla"]
+
+[ext_resource type="Texture2D" uid="uid://dhsii8ej4k7k7" path="res://assets/sprites/Skip.png" id="1_wxe6x"]
+
+[node name="QuitButton" type="Node2D"]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+texture_normal = ExtResource("1_wxe6x")

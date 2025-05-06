@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://qihqudlbhiic"]
+
+[ext_resource type="Texture2D" uid="uid://fj62f7fmnyf6" path="res://assets/sprites/圖片3.png" id="1_lgvs6"]
+[ext_resource type="Script" uid="uid://x32argmmo3sx" path="res://scripts/finish_line_final.gd" id="2_lgvs6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rpaa"]
+size = Vector2(162.985, 324.923)
+
+[node name="finish_line" type="Node2D"]
+
+[node name="flag" type="Sprite2D" parent="."]
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(0.075637, 0.0635418)
+texture = ExtResource("1_lgvs6")
+
+[node name="finish_line_final" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("2_lgvs6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="finish_line_final"]
+position = Vector2(0, -1.90735e-06)
+scale = Vector2(0.180998, 0.135417)
+shape = SubResource("RectangleShape2D_3rpaa")
+
+[node name="Timer" type="Timer" parent="finish_line_final"]
+wait_time = 0.528
+
+[connection signal="body_entered" from="finish_line_final" to="finish_line_final" method="_on_body_entered"]
+[connection signal="timeout" from="finish_line_final/Timer" to="finish_line_final" method="_on_timer_timeout"]

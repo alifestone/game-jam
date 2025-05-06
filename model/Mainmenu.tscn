@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgq3vgdm157hh"]
+
+[ext_resource type="Script" uid="uid://bwgvlccj5dnc8" path="res://model/mainmenu.gd" id="1_1b060"]
+[ext_resource type="PackedScene" uid="uid://nc2axxshbkla" path="res://model/quit_button.tscn" id="2_rlcd7"]
+[ext_resource type="Texture2D" uid="uid://b54m754p7losc" path="res://assets/sprites/background.webp" id="2_smrgh"]
+[ext_resource type="PackedScene" uid="uid://ci8nfqvua4x4" path="res://model/StartButton.tscn" id="4_rlcd7"]
+[ext_resource type="Texture2D" uid="uid://ce1gc6syyjiem" path="res://assets/sprites/GameTitle.png" id="6_smrgh"]
+
+[node name="Mainmenu" type="Node2D"]
+script = ExtResource("1_1b060")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 9
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_smrgh")
+
+[node name="QuitButton" parent="." instance=ExtResource("2_rlcd7")]
+
+[node name="StartButton" parent="." instance=ExtResource("4_rlcd7")]
+z_index = 9
+position = Vector2(502, 382)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(643, 358)
+zoom = Vector2(0.9, 0.9)
+
+[node name="ButtonClickSnd" type="AudioStreamPlayer" parent="."]
+
+[node name="GameTitle" type="TextureRect" parent="."]
+z_index = 9
+offset_left = 355.0
+offset_top = 99.0
+offset_right = 928.0
+offset_bottom = 385.0
+texture = ExtResource("6_smrgh")
